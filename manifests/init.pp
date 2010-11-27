@@ -13,4 +13,16 @@ class sudo {
         require => Package["sudo"],
         source  => "puppet:///modules/sudo/sudoers",
     }
+
+    file { "/etc/sudoers.d/doubledog":
+        group	=> "root",
+        mode    => "0440",
+        owner   => "root",
+        require => Package["sudo"],
+        source  => [
+            "puppet:///modules/sudo/sudoers.$hostname",
+            "puppet:///modules/sudo/sudoers.doubledog",
+        ],
+    }
+
 }
