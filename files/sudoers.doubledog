@@ -6,7 +6,7 @@ Defaults    always_set_home
 
 # Allowed sudoers at doubledog.org.
 jflorian	ALL=(ALL) 	ALL
-kdailey	        snoopy = ALL
+kdailey	        ALL=(ALL) 	ALL
 
 # Preserve the preferred EDITOR and prophile-related variables.
 Defaults    env_keep += "EDITOR VIMINIT GVIMINIT PROPHILE"
