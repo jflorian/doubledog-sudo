@@ -11,7 +11,7 @@
 #
 # Example usage:
 #
-#       include sudo
+#       include 'sudo'
 
 class sudo {
 
