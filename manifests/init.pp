@@ -1,43 +1,35 @@
 # modules/sudo/manifests/init.pp
 #
-# Synopsis:
-#       Configures sudo on a host.
+# == Class: sudo
 #
-# Parameters:
-#       NONE
+# Configures a sudo on a host.
 #
-# Requires:
-#       NONE
+# === Parameters
 #
-# Example usage:
+# NONE
 #
-#       include 'sudo'
+# === Authors
+#
+#   John Florian <john.florian@dart.biz>
+
 
 class sudo {
 
-    package { 'sudo':
-	ensure	=> installed
+    include 'sudo::params'
+
+    package { $sudo::params::packages:
+        ensure  => installed,
+    }
+
+    File {
+        owner       => 'root',
+        group       => 'root',
+        mode        => '0440',
+        subscribe   => Package[$sudo::params::packages],
     }
 
     file { '/etc/sudoers':
-        group	=> 'root',
-        mode    => '0440',
-        owner   => 'root',
-        require => Package['sudo'],
         source  => 'puppet:///modules/sudo/sudoers',
-    }
-
-    # NB: sudo will ignore files endinging in '~' or containing '.'.
-    file { "/etc/sudoers.d/sudoers-${hostname}":
-        group	=> 'root',
-        mode    => '0440',
-        owner   => 'root',
-        require => Package['sudo'],
-        source  => [
-            "puppet:///private-host/sudo/sudoers-${hostname}",
-            "puppet:///private-domain/sudo/sudoers-${domain}",
-            'puppet:///modules/sudo/sudoers-default',
-        ],
     }
 
 }
