@@ -2,14 +2,18 @@
 #
 # == Define: sudo::drop_in
 #
-# Installs a drop-in configuration file for sudo.
+# Manages a drop-in configuration file for sudo.
 #
 # === Parameters
+#
+# ==== Required
 #
 # [*namevar*]
 #   An arbitrary identifier for the drop-in instance unless the "filename"
 #   parameter is not set in which case this must provide the value normally
 #   set with the "filename" parameter.
+#
+# ==== Optional
 #
 # [*ensure*]
 #   Instance is to be 'present' (default) or 'absent'.
@@ -28,29 +32,39 @@
 #
 # === Authors
 #
-#   John Florian <john.florian@dart.biz>
+#   John Florian <jflorian@doubledog.org>
+#
+# === Copyright
+#
+# Copyright 2009-2015 John Florian
 
 
 define sudo::drop_in (
-    $filename=$name,
     $ensure='present',
+    $filename=$name,
     $content=undef,
     $source=undef,
 ) {
 
-    include 'sudo::params'
+    include '::sudo::params'
 
-    file { "/etc/sudoers.d/${filename}":
-        ensure      => $ensure,
-        owner       => 'root',
-        group       => 'root',
-        mode        => '0440',
-        seluser     => 'system_u',
-        selrole     => 'object_r',
-        seltype     => 'etc_t',
-        subscribe   => Package[$sudo::params::packages],
-        content     => $content,
-        source      => $source,
+    if $filename {
+        $filename_ = $filename
+    } else {
+        $filename_ = $name
+    }
+
+    file { "/etc/sudoers.d/${filename_}":
+        ensure    => $ensure,
+        owner     => 'root',
+        group     => 'root',
+        mode      => '0440',
+        seluser   => 'system_u',
+        selrole   => 'object_r',
+        seltype   => 'etc_t',
+        subscribe => Package[$::sudo::params::packages],
+        content   => $content,
+        source    => $source,
     }
 
 }

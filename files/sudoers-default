@@ -1,4 +1,0 @@
-# This is the default host/domain specific configuration file dropped into
-# /etc/sudoers.d/ by puppet.  This file is used when there isn't a specific
-# configuration need on a given host.  It does nothing but serve as a place
-# holder for puppet.

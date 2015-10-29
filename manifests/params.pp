@@ -6,26 +6,25 @@
 #
 # === Authors
 #
-#   John Florian <john.florian@dart.biz>
+#   John Florian <jflorian@doubledog.org>
+#
+# === Copyright
+#
+# Copyright 2009-2015 John Florian
 
 
 class sudo::params {
 
     case $::operatingsystem {
-        Fedora: {
 
-            if $::operatingsystemrelease < 13 {
-                fail ("The sudo module is not supported for Fedora < 13.")
-            }
+        'CentOS', 'Fedora': {
 
-            $packages = [
-                'sudo',
-            ]
+            $packages = 'sudo'
 
         }
 
         default: {
-            fail ("The sudo module is not yet supported on ${::operatingsystem}.")
+            fail ("${title}: operating system '${::operatingsystem}' is not supported")
         }
 
     }

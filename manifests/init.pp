@@ -2,34 +2,42 @@
 #
 # == Class: sudo
 #
-# Configures a sudo on a host.
+# Manages sudo on a host.
 #
 # === Parameters
 #
-# NONE
+# ==== Required
+#
+# ==== Optional
 #
 # === Authors
 #
-#   John Florian <john.florian@dart.biz>
+#   John Florian <jflorian@doubledog.org>
+#
+# === Copyright
+#
+# Copyright 2009-2015 John Florian
 
 
-class sudo {
+class sudo (
+    ) inherits ::sudo::params {
 
-    include 'sudo::params'
-
-    package { $sudo::params::packages:
-        ensure  => installed,
+    package { $::sudo::params::packages:
+        ensure => installed,
     }
 
     File {
-        owner       => 'root',
-        group       => 'root',
-        mode        => '0440',
-        subscribe   => Package[$sudo::params::packages],
+        owner     => 'root',
+        group     => 'root',
+        mode      => '0440',
+        seluser   => 'system_u',
+        selrole   => 'object_r',
+        seltype   => 'etc_t',
+        subscribe => Package[$::sudo::params::packages],
     }
 
     file { '/etc/sudoers':
-        source  => 'puppet:///modules/sudo/sudoers',
+        source  => "puppet:///modules/sudo/sudoers.${::operatingsystem}",
     }
 
 }
