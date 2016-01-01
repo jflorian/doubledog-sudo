@@ -36,7 +36,7 @@
 #
 # === Copyright
 #
-# Copyright 2009-2015 John Florian
+# Copyright 2009-2016 John Florian
 
 
 define sudo::drop_in (

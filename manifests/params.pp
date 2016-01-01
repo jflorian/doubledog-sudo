@@ -10,7 +10,7 @@
 #
 # === Copyright
 #
-# Copyright 2009-2015 John Florian
+# Copyright 2009-2016 John Florian
 
 
 class sudo::params {
