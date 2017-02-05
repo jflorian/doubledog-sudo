@@ -16,7 +16,7 @@
 #
 # === Copyright
 #
-# Copyright 2009-2016 John Florian
+# Copyright 2009-2017 John Florian
 
 
 class sudo (
@@ -26,18 +26,19 @@ class sudo (
         ensure => installed,
     }
 
-    File {
-        owner     => 'root',
-        group     => 'root',
-        mode      => '0440',
-        seluser   => 'system_u',
-        selrole   => 'object_r',
-        seltype   => 'etc_t',
-        subscribe => Package[$::sudo::params::packages],
-    }
-
-    file { '/etc/sudoers':
-        source  => "puppet:///modules/sudo/sudoers.${::operatingsystem}",
+    file {
+        default:
+            owner     => 'root',
+            group     => 'root',
+            mode      => '0440',
+            seluser   => 'system_u',
+            selrole   => 'object_r',
+            seltype   => 'etc_t',
+            subscribe => Package[$::sudo::params::packages],
+            ;
+        '/etc/sudoers':
+            source => "puppet:///modules/sudo/sudoers.${::operatingsystem}",
+            ;
     }
 
 }
