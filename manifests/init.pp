@@ -16,6 +16,7 @@
 
 class sudo (
         Array[String[1], 1]     $packages,
+        String[1]               $secure_path,
     ) {
 
     package { $packages:
@@ -33,7 +34,7 @@ class sudo (
             subscribe => Package[$packages],
             ;
         '/etc/sudoers':
-            source => "puppet:///modules/sudo/sudoers.${operatingsystem}",
+            content => template("sudo/sudoers.${operatingsystem}.erb"),
             ;
     }
 

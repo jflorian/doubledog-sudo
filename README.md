@@ -60,6 +60,9 @@ This class manages the package installation and primary configuration.
 ##### `packages` (required)
 An array of package names needed for the sudo installation.  The default should be correct for supported platforms.
 
+##### `secure_path` (required)
+Path used for every command run from sudo.  The default aims to match that of the supported platforms.
+
 
 ### Defined types
 
