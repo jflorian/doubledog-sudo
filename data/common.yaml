@@ -4,5 +4,6 @@
 
 ---
 
+sudo::drop_ins:     {}
 sudo::packages:
     - sudo

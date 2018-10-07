@@ -17,6 +17,7 @@
 class sudo (
         Array[String[1], 1]     $packages,
         String[1]               $secure_path,
+        Hash[String[1], Hash]   $drop_ins,
     ) {
 
     package { $packages:
@@ -37,5 +38,7 @@ class sudo (
             content => template("sudo/sudoers.${operatingsystem}.erb"),
             ;
     }
+
+    create_resources(sudo::drop_in, $drop_ins)
 
 }

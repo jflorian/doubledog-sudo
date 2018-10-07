@@ -63,6 +63,9 @@ An array of package names needed for the sudo installation.  The default should 
 ##### `secure_path` (required)
 Path used for every command run from sudo.  The default aims to match that of the supported platforms.
 
+##### `drop_ins`
+A hash whose keys are drop-in resource names and whose values are hashes comprising the same parameters you would otherwise pass to the [sudo::drop\_in](#sudodrop_in-defined-type) defined type.
+
 
 ### Defined types
 
