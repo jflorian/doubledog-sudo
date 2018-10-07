@@ -40,7 +40,11 @@ This module lets you manage sudo.
 
 **Classes:**
 
+* [sudo](#sudo-class)
+
 **Defined types:**
+
+* [sudo::drop\_in](#sudodrop_in-defined-type)
 
 **Data types:**
 
@@ -49,7 +53,35 @@ This module lets you manage sudo.
 
 ### Classes
 
+#### sudo class
+
+This class manages the package installation and primary configuration.
+
+##### `packages` (required)
+An array of package names needed for the sudo installation.  The default should be correct for supported platforms.
+
+
 ### Defined types
+
+#### sudo::drop\_in defined type
+
+This defined type manages a drop-in configuration file.  This is the preferred way to alter the primary sudo configuration.
+
+##### `namevar` (required)
+An arbitrary identifier for the file instance unless the *filename* parameter is not set in which case this must provide the value normally set with the *filename* parameter.
+
+##### `content`
+Literal content for the file.  If neither *content* nor *source* is given, the content of the file will be left unmanaged.
+
+##### `ensure`
+Instance is to be `'present'` (default) or `'absent'`.  Alternatively, a Boolean value may also be used with `true` equivalent to `'present'` and `false` equivalent to `'absent'`.
+
+##### `filename`
+Name to be given to the file, without any path details.  This may be used in place of *namevar* if it's beneficial to give *namevar* an arbitrary value.
+
+##### `source`
+URI of the file content.  If neither *content* nor *source* is given, the content of the file will be left unmanaged.
+
 
 ### Data types
 

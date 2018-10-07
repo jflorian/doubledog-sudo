@@ -1,14 +1,7 @@
-# modules/sudo/manifests/init.pp
 #
 # == Class: sudo
 #
 # Manages sudo on a host.
-#
-# === Parameters
-#
-# ==== Required
-#
-# ==== Optional
 #
 # === Authors
 #
@@ -16,13 +9,16 @@
 #
 # === Copyright
 #
-# Copyright 2009-2017 John Florian
+# This file is part of the doubledog-sudo Puppet module.
+# Copyright 2009-2018 John Florian
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 
 class sudo (
-    ) inherits ::sudo::params {
+        Array[String[1], 1]     $packages,
+    ) {
 
-    package { $::sudo::params::packages:
+    package { $packages:
         ensure => installed,
     }
 
@@ -34,10 +30,10 @@ class sudo (
             seluser   => 'system_u',
             selrole   => 'object_r',
             seltype   => 'etc_t',
-            subscribe => Package[$::sudo::params::packages],
+            subscribe => Package[$packages],
             ;
         '/etc/sudoers':
-            source => "puppet:///modules/sudo/sudoers.${::operatingsystem}",
+            source => "puppet:///modules/sudo/sudoers.${operatingsystem}",
             ;
     }
 

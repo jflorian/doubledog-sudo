@@ -1,6 +1,6 @@
 {
     "name": "doubledog-sudo",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "author": "John Florian",
     "license": "GPL-3.0",
     "summary": "A module to manage sudo",
@@ -19,5 +19,9 @@
         }
     ],
     "dependencies": [
+        {
+            "name": "doubledog/ddolib",
+            "version_requirement": ">= 0.0.0 < 1.0.0"
+        }
     ]
 }

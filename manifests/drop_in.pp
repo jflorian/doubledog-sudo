@@ -1,34 +1,7 @@
-# modules/sudo/manifests/drop_in.pp
 #
 # == Define: sudo::drop_in
 #
 # Manages a drop-in configuration file for sudo.
-#
-# === Parameters
-#
-# ==== Required
-#
-# [*namevar*]
-#   An arbitrary identifier for the drop-in instance unless the "filename"
-#   parameter is not set in which case this must provide the value normally
-#   set with the "filename" parameter.
-#
-# ==== Optional
-#
-# [*ensure*]
-#   Instance is to be 'present' (default) or 'absent'.
-#
-# [*filename*]
-#   Name to be given to the drop-in file within the sudoers.d directory.
-#   Defaults to the value of the "namevar" parameter.
-#
-# [*content*]
-#   Literal content for the drop-in file.  One and only one of "content"
-#   or "source" must be given.
-#
-# [*source*]
-#   URI of the drop-in file content.  One and only one of "content" or
-#   "source" must be given.
 #
 # === Authors
 #
@@ -36,25 +9,21 @@
 #
 # === Copyright
 #
-# Copyright 2009-2016 John Florian
+# This file is part of the doubledog-sudo Puppet module.
+# Copyright 2009-2018 John Florian
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 
 define sudo::drop_in (
-    $ensure='present',
-    $filename=$name,
-    $content=undef,
-    $source=undef,
+        Ddolib::File::Ensure    $ensure='present',
+        Optional[String[1]]     $content=undef,
+        String[1]               $filename=$title,
+        Optional[String[1]]     $source=undef,
 ) {
 
-    include '::sudo::params'
+    include 'sudo'
 
-    if $filename {
-        $filename_ = $filename
-    } else {
-        $filename_ = $name
-    }
-
-    file { "/etc/sudoers.d/${filename_}":
+    file { "/etc/sudoers.d/${filename}":
         ensure    => $ensure,
         owner     => 'root',
         group     => 'root',
@@ -62,7 +31,7 @@ define sudo::drop_in (
         seluser   => 'system_u',
         selrole   => 'object_r',
         seltype   => 'etc_t',
-        subscribe => Package[$::sudo::params::packages],
+        subscribe => Package[$sudo::packages],
         content   => $content,
         source    => $source,
     }

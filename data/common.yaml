@@ -4,8 +4,5 @@
 
 ---
 
-#sudo::enable:                   true
-#sudo::ensure:                   running
-#sudo::packages:
-#    - sudo
-#sudo::service:                  sudo
+sudo::packages:
+    - sudo
