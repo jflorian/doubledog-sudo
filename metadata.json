@@ -2,9 +2,11 @@
     "name": "doubledog-sudo",
     "version": "1.0.0",
     "author": "John Florian",
-    "license": "GPL-3.0",
     "summary": "A module to manage sudo",
-    "source": "https://www.doubledog.org/git/doubledog-sudo.git",
+    "license": "GPL-3.0",
+    "source": "https://github.com/jflorian/doubledog-sudo",
+    "project_page": "https://github.com/jflorian/doubledog-sudo",
+    "issues_url": "https://github.com/jflorian/doubledog-sudo/issues",
     "operatingsystem_support": [
         {
             "operatingsystem": "CentOS",
