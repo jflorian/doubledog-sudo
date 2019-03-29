@@ -1,7 +1,7 @@
 <!--
-# This file is part of the doubledog-sudo Puppet module.
-# Copyright 2018 John Florian
-# SPDX-License-Identifier: GPL-3.0-or-later
+This file is part of the doubledog-sudo Puppet module.
+Copyright 2018-2019 John Florian <jflorian@doubledog.org>
+SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
 # sudo
