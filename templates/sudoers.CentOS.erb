@@ -1,6 +1,6 @@
 <%#
 This file is part of the doubledog-sudo Puppet module.
-Copyright 2015-2018 John Florian
+Copyright 2015-2019 John Florian
 SPDX-License-Identifier: GPL-3.0-or-later
 -%>
 # This file is managed by Puppet via the "<%= @module_name %>" module.
@@ -37,7 +37,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 # Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum
 
 ## Services
-# Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig
+# Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /usr/bin/systemctl start, /usr/bin/systemctl stop, /usr/bin/systemctl reload, /usr/bin/systemctl restart, /usr/bin/systemctl status, /usr/bin/systemctl enable, /usr/bin/systemctl disable
 
 ## Updating the locate database
 # Cmnd_Alias LOCATE = /usr/bin/updatedb
@@ -57,14 +57,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 # Defaults specification
 
 #
-# Disable "ssh hostname sudo <cmd>", because it will show the password in clear. 
-#         You have to run "ssh -t hostname sudo <cmd>".
-#
-Defaults    requiretty
-
-#
-# Refuse to run if unable to disable echo on the tty. This setting should also be
-# changed in order to be able to use sudo without a tty. See requiretty above.
+# Refuse to run if unable to disable echo on the tty.
 #
 Defaults   !visiblepw
 
@@ -76,6 +69,15 @@ Defaults   !visiblepw
 # env_reset is disabled or HOME is present in the env_keep list.
 #
 Defaults    always_set_home
+Defaults    match_group_by_gid
+
+# Prior to version 1.8.15, groups listed in sudoers that were not
+# found in the system group database were passed to the group
+# plugin, if any. Starting with 1.8.15, only groups of the form
+# %:group are resolved via the group plugin by default.
+# We enable always_query_group_plugin to restore old behavior.
+# Disable this option for new behavior.
+Defaults    always_query_group_plugin
 
 Defaults    env_reset
 Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR LS_COLORS"
