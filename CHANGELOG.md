@@ -26,6 +26,7 @@ All notable changes to this project (since v1.0.0) will be documented in this fi
 - sync `/etc/sudoers` for CentOS with upstream
 ### Deprecated
 ### Removed
+- Fedora 28 support
 ### Fixed
 ### Security
 
