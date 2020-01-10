@@ -1,12 +1,14 @@
 {
-    "name": "doubledog-sudo",
-    "version": "1.2.0",
     "author": "John Florian",
-    "summary": "A module to manage sudo",
-    "license": "GPL-3.0",
-    "source": "https://github.com/jflorian/doubledog-sudo",
-    "project_page": "https://github.com/jflorian/doubledog-sudo",
+    "dependencies": [
+        {
+            "name": "doubledog/ddolib",
+            "version_requirement": ">= 1.0.0 < 2.0.0"
+        }
+    ],
     "issues_url": "https://github.com/jflorian/doubledog-sudo/issues",
+    "license": "GPL-3.0",
+    "name": "doubledog-sudo",
     "operatingsystem_support": [
         {
             "operatingsystem": "CentOS",
@@ -18,14 +20,13 @@
             "operatingsystem": "Fedora",
             "operatingsystemrelease": [
                 "29",
-                "30"
+                "30",
+                "31"
             ]
         }
     ],
-    "dependencies": [
-        {
-            "name": "doubledog/ddolib",
-            "version_requirement": ">= 1.0.0 < 2.0.0"
-        }
-    ]
+    "project_page": "https://github.com/jflorian/doubledog-sudo",
+    "source": "https://github.com/jflorian/doubledog-sudo",
+    "summary": "A module to manage sudo",
+    "version": "1.2.0"
 }
