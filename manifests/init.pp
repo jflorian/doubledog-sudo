@@ -10,7 +10,7 @@
 # === Copyright
 #
 # This file is part of the doubledog-sudo Puppet module.
-# Copyright 2009-2019 John Florian
+# Copyright 2009-2021 John Florian
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -35,7 +35,7 @@ class sudo (
             subscribe => Package[$packages],
             ;
         '/etc/sudoers':
-            content => template("sudo/sudoers.${::operatingsystem}.erb"),
+            content => template('sudo/sudoers.erb'),
             ;
     }
 

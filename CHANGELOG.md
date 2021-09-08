@@ -24,6 +24,8 @@ All notable changes to this project (since v1.0.0) will be documented in this fi
 - CentOS 8 support
 - Fedora 32-34 support
 ### Changed
+- freshened sudoers template based on sudo-1.9.5p2-1.fc34
+    - this was identical to that used for CentOS, so they've been merged
 ### Deprecated
 ### Removed
 - Fedora 29-31 support
