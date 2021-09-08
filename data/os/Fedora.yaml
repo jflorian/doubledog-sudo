@@ -1,9 +1,9 @@
 # This file is part of the doubledog-sudo Puppet module.
-# Copyright 2018 John Florian
+# Copyright 2018-2021 John Florian
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 ---
 
 sudo::packages:
     - sudo
-sudo::secure_path:  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+sudo::secure_path:  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/lib/snapd/snap/bin

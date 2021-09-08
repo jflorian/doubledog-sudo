@@ -23,6 +23,7 @@ All notable changes to this project (since v1.0.0) will be documented in this fi
 ### Added
 - CentOS 8 support
 - Fedora 32-34 support
+- snaps to `secure_path` on Fedora, per their default in sudo-1.9.5p2-1.fc34
 ### Changed
 - freshened sudoers template based on sudo-1.9.5p2-1.fc34
     - this was identical to that used for CentOS, so they've been merged
