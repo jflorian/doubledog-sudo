@@ -19,7 +19,7 @@ Template
 
 All notable changes to this project (since v1.0.0) will be documented in this file.  The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [1.3.0] WIP
+## [1.3.0] 2021-09-08
 ### Added
 - CentOS 8 support
 - Fedora 32-34 support
@@ -27,11 +27,8 @@ All notable changes to this project (since v1.0.0) will be documented in this fi
 ### Changed
 - freshened sudoers template based on sudo-1.9.5p2-1.fc34
     - this was identical to that used for CentOS, so they've been merged
-### Deprecated
 ### Removed
 - Fedora 29-31 support
-### Fixed
-### Security
 
 ## [1.2.0] 2019-05-29
 ### Added
